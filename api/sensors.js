@@ -1,13 +1,17 @@
 import { parse } from 'csv-parse/sync';
 import { readFileSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 let cachedData = null;
 
 function loadData() {
   if (cachedData) return cachedData;
   
-  const csvPath = join(process.cwd(), 'smart_logistics_dataset_transformed.csv');
+  const csvPath = join(__dirname, '..', 'smart_logistics_dataset_transformed.csv');
   const fileContent = readFileSync(csvPath, 'utf-8');
   
   const records = parse(fileContent, {
