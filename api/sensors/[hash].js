@@ -7,7 +7,7 @@ let cachedData = null;
 function loadData() {
   if (cachedData) return cachedData;
   
-  const csvPath = join(process.cwd(), 'smart_logistics_dataset_transformed.csv');
+  const csvPath = join(__dirname, '..', 'data.csv');
   const fileContent = readFileSync(csvPath, 'utf-8');
   
   const records = parse(fileContent, {
