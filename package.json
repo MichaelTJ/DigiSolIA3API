@@ -1,0 +1,11 @@
+{
+  "name": "iot-sensor-data-api",
+  "version": "1.0.0",
+  "description": "API for IoT logistics sensor data",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.3"
+  }
+}
