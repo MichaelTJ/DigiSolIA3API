@@ -1,17 +1,13 @@
-import { parse } from 'csv-parse/sync';
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const { parse } = require('csv-parse/sync');
+const { readFileSync } = require('fs');
+const { join } = require('path');
 
 let cachedData = null;
 
 function loadData() {
   if (cachedData) return cachedData;
   
-  const csvPath = join(__dirname, '..', '..', 'smart_logistics_dataset_transformed.csv');
+  const csvPath = join(process.cwd(), 'smart_logistics_dataset_transformed.csv');
   const fileContent = readFileSync(csvPath, 'utf-8');
   
   const records = parse(fileContent, {
@@ -36,7 +32,7 @@ function loadData() {
   return records;
 }
 
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   try {
     const { hash } = req.query;
     const data = loadData();
@@ -52,6 +48,6 @@ export default function handler(req, res) {
     
     return res.status(200).json(record);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message, stack: error.stack });
   }
-}
+};

@@ -1,7 +1,6 @@
 {
   "name": "iot-sensor-data-api",
   "version": "1.0.0",
-  "type": "module",
   "description": "API for IoT logistics sensor data",
   "scripts": {
     "dev": "vercel dev"
