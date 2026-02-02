@@ -65,9 +65,9 @@ module.exports = function handler(req, res) {
       data = data.filter(row => row.Logistics_Delay_Reason.toLowerCase() === delay_reason.toLowerCase());
     }
 
-    // Filter by SHA256_Hash (exact match)
+    // Filter by All_Data_Hash (exact match)
     if (hash) {
-      data = data.filter(row => row.SHA256_Hash === hash);
+      data = data.filter(row => row.All_Data_Hash === hash);
     }
 
     const total = data.length;

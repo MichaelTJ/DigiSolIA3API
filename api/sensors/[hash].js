@@ -37,7 +37,7 @@ module.exports = function handler(req, res) {
     const { hash } = req.query;
     const data = loadData();
     
-    const record = data.find(row => row.SHA256_Hash === hash);
+    const record = data.find(row => row.All_Data_Hash === hash);
     
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
